@@ -22,7 +22,7 @@ class SecurityConfig {
 
   @Bean
   fun userService(userRepository: UserRepository): UserDetailsService {
-    return UserDetailsService { username: String ->
+    return UserDetailsService { username ->
       userRepository.findByUsername(username)?.asUser(passwordEncoder())
         ?: throw NoSuchElementException("Username or Password is incorrect")
     }
