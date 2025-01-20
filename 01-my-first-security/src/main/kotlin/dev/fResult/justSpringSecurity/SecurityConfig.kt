@@ -3,9 +3,12 @@ package dev.fResult.justSpringSecurity
 import org.springframework.boot.CommandLineRunner
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+import org.springframework.security.config.annotation.web.builders.HttpSecurity
+import org.springframework.security.config.annotation.web.invoke
 import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.security.crypto.password.PasswordEncoder
+import org.springframework.security.web.SecurityFilterChain
 
 @Configuration
 class SecurityConfig {
@@ -26,5 +29,17 @@ class SecurityConfig {
       userRepository.findByUsername(username)?.asUser(passwordEncoder())
         ?: throw NoSuchElementException("Username or Password is incorrect")
     }
+  }
+
+  @Bean
+  @Throws(Exception::class)
+  fun defaultSecurityFilterChain(httpSecurity: HttpSecurity): SecurityFilterChain? {
+    httpSecurity {
+      authorizeHttpRequests { authorize(anyRequest, authenticated) }
+      formLogin {}
+      httpBasic {}
+    }
+
+    return httpSecurity.build()
   }
 }
