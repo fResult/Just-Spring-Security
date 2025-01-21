@@ -26,5 +26,5 @@ data class UserAccount(
 
   fun asUser(passwordEncoder: PasswordEncoder): UserDetails =
     User.builder().username(username).password(passwordEncoder.encode(password))
-      .authorities(authorities.map { SimpleGrantedAuthority("ROLE_$it") }).build()
+      .authorities(authorities.map { SimpleGrantedAuthority(it) }).build()
 }

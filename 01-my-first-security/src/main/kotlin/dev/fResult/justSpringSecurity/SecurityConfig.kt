@@ -20,8 +20,8 @@ class SecurityConfig {
   @Bean
   fun initUsers(repository: UserManagementRepository): CommandLineRunner? {
     return CommandLineRunner { _ ->
-      repository.save(UserAccount("user", "password", "USER"))
-      repository.save(UserAccount("admin", "password", "ADMIN"))
+      repository.save(UserAccount("user", "password", "ROLE_USER"))
+      repository.save(UserAccount("admin", "password", "ROLE_ADMIN"))
     }
   }
 
@@ -32,20 +32,6 @@ class SecurityConfig {
         ?: throw NoSuchElementException("Username or Password is incorrect")
     }
   }
-
-//  @Bean
-//  @Throws(Exception::class)
-//  fun defaultSecurityFilterChain(httpSecurity: HttpSecurity): SecurityFilterChain? {
-//    httpSecurity {
-//      authorizeHttpRequests {
-//        authorize(anyRequest, authenticated)
-//      }
-//      formLogin {}
-//      httpBasic {}
-//    }
-//
-//    return httpSecurity.build()
-//  }
 
   @Bean
   @Throws(Exception::class)
