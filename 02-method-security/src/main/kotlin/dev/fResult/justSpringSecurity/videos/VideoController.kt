@@ -16,8 +16,9 @@ class VideoController(private val videoService: VideoService) {
   @PostMapping
   fun newVideo(@RequestBody newVideo: NewVideo, authentication: Authentication): ResponseEntity<Video> {
     val createdVideo = videoService.create(newVideo, authentication.name)
+    val createdURI = URI.create("/videos/${createdVideo.id}")
 
-    return createdVideo.let { ResponseEntity.created(URI.create("/videos/${it.id}")).body(it) }
+    return createdVideo.let { ResponseEntity.created(createdURI).body(it) }
   }
 
   @DeleteMapping("/{id}")
