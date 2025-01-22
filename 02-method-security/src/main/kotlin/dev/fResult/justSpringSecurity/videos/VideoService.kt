@@ -13,4 +13,9 @@ class VideoService(private val videoRepository: VideoRepository) {
 
     return videoRepository.saveAndFlush(videoToCreate)
   }
+
+  fun delete(id: Long): Boolean? = videoRepository.findById(id).map { video ->
+    videoRepository.delete(video)
+    true
+  }.orElseThrow { NoSuchElementException("Video with id [$id] not found") }
 }
