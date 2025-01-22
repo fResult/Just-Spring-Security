@@ -5,7 +5,7 @@ import jakarta.persistence.GeneratedValue
 import jakarta.persistence.Id
 
 @Entity
-data class VideoEntity(
+data class Video(
   @Id @GeneratedValue val id: Long?,
   val username: String,
   val name: String,

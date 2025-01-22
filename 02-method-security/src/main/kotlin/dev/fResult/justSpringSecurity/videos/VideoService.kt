@@ -11,17 +11,17 @@ class VideoService(private val videoRepository: VideoRepository) {
   fun initVideos(): Unit {
     videoRepository.saveAll(
       listOf(
-        VideoEntity(
+        Video(
           "alice",
           "Need HELP with your SPRING BOOT 3 App?",
           "SPRING BOOT 3 will only speed things up and make it super SIMPLE to serve templates and raw data."
         ),
-        VideoEntity(
+        Video(
           "alice",
           "Don't do THIS to your own CODE!",
           "As a pro developer, never ever EVER do this to your code. Because you'll ultimately be doing it to YOURSELF!"
         ),
-        VideoEntity(
+        Video(
           "bob",
           "SECRETS to fix BROKEN CODE!",
           "Discover ways to not only debug your code, but to regain your confidence and get back in the game as a software developer."
@@ -30,13 +30,13 @@ class VideoService(private val videoRepository: VideoRepository) {
     )
   }
 
-  fun getVideos(search: String?): List<VideoEntity> = search
+  fun getVideos(search: String?): List<Video> = search
     ?.let(::convertToVideoExample)
     ?.let(videoRepository::findAll)
     ?: videoRepository.findAll()
 
-  fun create(newVideo: NewVideo, username: String): VideoEntity {
-    val videoToCreate = VideoEntity(username, newVideo.name, newVideo.description)
+  fun create(newVideo: NewVideo, username: String): Video {
+    val videoToCreate = Video(username, newVideo.name, newVideo.description)
 
     return videoRepository.saveAndFlush(videoToCreate)
   }
@@ -46,8 +46,8 @@ class VideoService(private val videoRepository: VideoRepository) {
     true
   }.orElseThrow { NoSuchElementException("Video with id [$id] not found") }
 
-  private fun convertToVideoExample(search: String): Example<VideoEntity> = Example.of(
-    VideoEntity(search, search, search),
+  private fun convertToVideoExample(search: String): Example<Video> = Example.of(
+    Video(search, search, search),
     ExampleMatcher.matchingAny().withIgnoreCase().withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING)
   )
 }

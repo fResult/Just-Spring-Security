@@ -9,12 +9,12 @@ import java.net.URI
 @RequestMapping("/videos")
 class VideoController(private val videoService: VideoService) {
   @GetMapping
-  fun getVideos(@RequestParam search: String?): ResponseEntity<List<VideoEntity>> {
+  fun getVideos(@RequestParam search: String?): ResponseEntity<List<Video>> {
     return ResponseEntity.ok(videoService.getVideos(search))
   }
 
   @PostMapping
-  fun newVideo(@RequestBody newVideo: NewVideo, authentication: Authentication): ResponseEntity<VideoEntity> {
+  fun newVideo(@RequestBody newVideo: NewVideo, authentication: Authentication): ResponseEntity<Video> {
     val createdVideo = videoService.create(newVideo, authentication.name)
 
     return createdVideo.let { ResponseEntity.created(URI.create("/videos/${it.id}")).body(it) }
