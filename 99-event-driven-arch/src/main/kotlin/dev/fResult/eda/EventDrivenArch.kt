@@ -15,7 +15,6 @@ interface EventBus {
 interface EventChannel {
   val name: String
   fun add(event: DomainEvent)
-//  fun subscribe(consumer: EventConsumer)
   fun addConsumer(consumer: EventConsumer)
 }
 
@@ -78,12 +77,12 @@ class FlightControlTower(private val eventBus: EventBus) : EventProducer {
   }
 }
 
-class AirTrafficControl : EventConsumer {
+class AirTrafficControl(private val id: String) : EventConsumer {
   override fun consume(event: DomainEvent) {
     if (event.type == "landing") {
-      println("Flight ${event.id} is landing. Clearing runway.")
+      println("[AirTrafficControl:$id] Flight ${event.id} is landing. Clearing runway.")
     } else if (event.type == "takeoff") {
-      println("Flight ${event.id} is taking off. Monitoring airspace.")
+      println("[AirTrafficControl:$id] Flight ${event.id} is taking off. Monitoring airspace.")
     }
   }
 }
@@ -108,8 +107,10 @@ fun main() {
   carSensor.detectExitingCar(car1.registrationId, car1.toString())
 
   val flightControlTower = FlightControlTower(eventBus)
-  val airTrafficControl = AirTrafficControl()
-  flightEventChannel.addConsumer(airTrafficControl)
+  val airTrafficControl1 = AirTrafficControl("ACT-111")
+  val airTrafficControl2 = AirTrafficControl("ACT-999")
+  flightEventChannel.addConsumer(airTrafficControl1)
+  flightEventChannel.addConsumer(airTrafficControl2)
 
   val flight1 = Flight("TG123", "Thai Airways")
   val flight2 = Flight("VJ456", "VietJet Air")

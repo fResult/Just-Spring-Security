@@ -5,4 +5,4 @@ rootProject.name = "JustSpringSecurity"
 
 include("01-my-first-security")
 
-include("event-driven-arch")
+include("99-event-driven-arch")
