@@ -18,7 +18,7 @@ class SecurityConfig {
   fun passwordEncoder(): PasswordEncoder = BCryptPasswordEncoder()
 
   @Bean
-  fun initUsers(repository: UserManagementRepository): CommandLineRunner? {
+  fun initUsers(repository: UserManagementRepository): CommandLineRunner {
     return CommandLineRunner { _ ->
       repository.save(UserAccount("user", "password", "ROLE_USER"))
       repository.save(UserAccount("admin", "password", "ROLE_ADMIN"))
@@ -49,6 +49,8 @@ class SecurityConfig {
 
       formLogin {}
       httpBasic {}
+
+      csrf { disable() }
     }
 
     return httpSecurity.build()
