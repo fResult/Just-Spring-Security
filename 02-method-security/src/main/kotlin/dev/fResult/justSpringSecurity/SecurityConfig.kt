@@ -46,6 +46,7 @@ class SecurityConfig {
         authorize("/users/**", hasRole("ADMIN"))
 
         authorize(HttpMethod.GET, "/videos/**", authenticated)
+        authorize(HttpMethod.POST, "/videos/**", hasRole("ADMIN"))
 
         authorize(anyRequest, denyAll)
       }
