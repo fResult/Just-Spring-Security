@@ -25,6 +25,6 @@ data class UserAccount(
       this(null, username, password, authorities.toList())
 
   fun asUser(passwordEncoder: PasswordEncoder): UserDetails =
-    User.builder().username(username).password(passwordEncoder.encode(password))
+    User.withUsername(username).password(passwordEncoder.encode(password))
       .authorities(authorities.map { SimpleGrantedAuthority(it) }).build()
 }
