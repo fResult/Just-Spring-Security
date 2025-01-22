@@ -30,9 +30,10 @@ class VideoService(private val videoRepository: VideoRepository) {
     )
   }
 
-  fun getVideos(): List<VideoEntity> {
-    return videoRepository.findAll()
-  }
+  fun getVideos(search: String?): List<VideoEntity> = search
+    ?.let(::convertToVideoExample)
+    ?.let(videoRepository::findAll)
+    ?: videoRepository.findAll()
 
   fun create(newVideo: NewVideo, username: String): VideoEntity {
     val videoToCreate = VideoEntity(username, newVideo.name, newVideo.description)

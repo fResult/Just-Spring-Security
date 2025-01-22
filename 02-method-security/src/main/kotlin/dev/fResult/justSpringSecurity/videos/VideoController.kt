@@ -9,7 +9,9 @@ import java.net.URI
 @RequestMapping("/videos")
 class VideoController(private val videoService: VideoService) {
   @GetMapping
-  fun getVideos(): ResponseEntity<List<VideoEntity>> = ResponseEntity.ok(videoService.getVideos())
+  fun getVideos(@RequestParam search: String?): ResponseEntity<List<VideoEntity>> {
+    return ResponseEntity.ok(videoService.getVideos(search))
+  }
 
   @PostMapping
   fun newVideo(@RequestBody newVideo: NewVideo, authentication: Authentication): ResponseEntity<VideoEntity> {
