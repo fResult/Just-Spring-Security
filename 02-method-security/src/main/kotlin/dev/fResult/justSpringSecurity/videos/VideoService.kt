@@ -1,6 +1,8 @@
 package dev.fResult.justSpringSecurity.videos
 
 import jakarta.annotation.PostConstruct
+import org.springframework.data.domain.Example
+import org.springframework.data.domain.ExampleMatcher
 import org.springframework.stereotype.Service
 
 @Service
@@ -42,4 +44,9 @@ class VideoService(private val videoRepository: VideoRepository) {
     videoRepository.delete(video)
     true
   }.orElseThrow { NoSuchElementException("Video with id [$id] not found") }
+
+  private fun convertToVideoExample(search: String): Example<VideoEntity> = Example.of(
+    VideoEntity(search, search, search),
+    ExampleMatcher.matchingAny().withIgnoreCase().withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING)
+  )
 }
