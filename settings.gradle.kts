@@ -4,5 +4,6 @@ plugins {
 rootProject.name = "JustSpringSecurity"
 
 include("01-my-first-security")
+include("02-method-security")
 
 include("99-event-driven-arch")
