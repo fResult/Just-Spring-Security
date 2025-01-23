@@ -23,9 +23,7 @@ class VideoController(private val videoService: VideoService) {
 
   @DeleteMapping("/{id}")
   fun deleteVideo(@PathVariable id: Long): ResponseEntity<Void> = videoService.delete(id)
-    ?.let {
-      ResponseEntity.noContent().build()
-    }
+    ?.let { ResponseEntity.noContent().build() }
     ?: ResponseEntity.notFound().build()
 }
 
