@@ -11,3 +11,12 @@ spring:
     url: jdbc:h2:mem:testdb
     username: sa
     password:
+
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            clientId: ${YOUR_GOOGLE_CLIENT_ID:DUMMY}
+            clientSecret: ${YOUR_GOOGLE_CLIENT_SECRET:DUMMY}
+            scope: openid,profile,email,https://www.googleapis.com/auth/youtube

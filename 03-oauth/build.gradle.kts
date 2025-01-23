@@ -38,10 +38,10 @@ dependencies {
   runtimeOnly("com.h2database:h2")
 
   testImplementation(libs.spring.boot.starter.test)
-  testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
   testImplementation("org.springframework.security:spring-security-test")
-  testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+  testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
   testImplementation("io.projectreactor:reactor-test")
+  testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 
 kotlin {
