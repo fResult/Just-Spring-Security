@@ -24,8 +24,8 @@
 
 ### 01-my-spring-security
 
-- See [README](/01-my-spring-security/README.md)
+- See [README](./01-my-spring-security/README.md)
 
 ### 02-method-security
 
-- See [README](/02-method-security/README.md)
+- See [README](./02-method-security/README.md)

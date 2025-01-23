@@ -1,4 +1,4 @@
-# 2 Method Security
+# 2. Method Security
 
 ## API Usage
 
