@@ -1,4 +1,4 @@
-package dev.fResult.justSpringSecurity
+package dev.fResult.justSpringSecurity.configs
 
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
