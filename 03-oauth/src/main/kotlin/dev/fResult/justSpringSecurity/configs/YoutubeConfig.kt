@@ -9,7 +9,7 @@ import org.springframework.web.reactive.function.client.WebClient
 @Configuration
 class YoutubeConfig {
   private companion object {
-    const val YOUTUBE_V3_API: String = "https://googleapis.com/youtube/v3"
+    const val YOUTUBE_V3_API = "https://googleapis.com/youtube/v3"
   }
 
   @Bean
