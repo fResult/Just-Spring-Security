@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>YouTube</title>
-  <link rel="stylesheet" href="style.css" type="text/css"/>
+  <link rel="stylesheet" href="youtube.css" type="text/css"/>
 </head>
 <body>
 <h1>Greetings!</h1>
@@ -29,11 +29,11 @@
       <td>{{snippet.publishedAt}}</td>
       <td>
         <a href="https://youtube.com/watch?v={{id.videoId}}" target="_blank">
-          <img src="{{snippet.thumbnails}}" alt="thumbnail" />
+          <img src="{{snippet.thumbnail.url}}" alt="thumbnail" />
         </a>
       </td>
       <td>{{snippet.title}}</td>
-      <td>{{snippet.description}}</td>
+      <td>{{snippet.shortDescription}}</td>
     </tr>
   {{/channelVideos.items}}
   </tbody>
