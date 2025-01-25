@@ -20,7 +20,6 @@ class SecurityConfig {
       .authorizationCode()
       .refreshToken()
       .clientCredentials()
-      .password()
       .build()
 
     clientManager.setAuthorizedClientProvider(clientProvider)
