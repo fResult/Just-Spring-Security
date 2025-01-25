@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@RequestMapping("/")
+@RequestMapping
 class HomeController(val userRepository: UserRepository) {
   @GetMapping
   fun home(): ResponseEntity<String> =
@@ -15,5 +15,6 @@ class HomeController(val userRepository: UserRepository) {
 
   @GetMapping("/users")
   fun getUser(@RequestParam username: String): ResponseEntity<UserInfo> = userRepository.findByUsername(username)
-    ?.let { ResponseEntity.ok(UserInfo.fromDao(it)) } ?: ResponseEntity.notFound().build()
+    ?.let { ResponseEntity.ok(UserInfo.fromDao(it)) }
+    ?: ResponseEntity.notFound().build()
 }
