@@ -11,7 +11,7 @@ class YoutubeController(private val youtube: Youtube) {
   @GetMapping
   fun youtubeHome(model: Model): String {
     val response = youtube.channelVideos(
-      "UC_x5XG1OV2P6uZZ5FSM9Ttw",
+      "UCLMPXsvSrhNPN3i9h-u8PYg", // Spring I/O Channel ID
       10, Youtube.Sort.VIEW_COUNT,
     )
 
