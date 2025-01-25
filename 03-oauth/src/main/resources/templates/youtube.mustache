@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>YouTube</title>
+  <link rel="stylesheet" href="style.css" type="text/css"/>
+</head>
+<body>
+<h1>Greetings!</h1>
+
+<p>In this section, we are learning how to build web application using Spring Boot 3.4 + OAuth 2.0</p>
+
+<h2>Your Videos</h2>
+<table>
+  <thead>
+  <tr>
+    <td>Id</td>
+    <td>Publish</td>
+    <td>Thumbnail</td>
+    <td>Title</td>
+    <td>Description</td>
+  </tr>
+  </thead>
+  <tbody>
+  {{#channelVideos.items}}
+    <tr>
+      <td>{{id.videoId}}</td>
+      <td>{{snippet.publishedAt}}</td>
+      <td>
+        <a href="https://youtube.com/watch?v={{id.videoId}}" target="_blank">
+          <img src="{{snippet.thumbnails}}" alt="thumbnail" />
+        </a>
+      </td>
+      <td>{{snippet.title}}</td>
+      <td>{{snippet.description}}</td>
+    </tr>
+  {{/channelVideos.items}}
+  </tbody>
+</table>
+</body>
+</html>
