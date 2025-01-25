@@ -1,6 +1,8 @@
 package dev.fResult.justSpringSecurity
 
 import org.junit.jupiter.api.Test
+import org.mockito.Mockito.anyString
+import org.mockito.Mockito.`when`
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 import org.springframework.http.MediaType
@@ -11,9 +13,9 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.*
 
 @WebMvcTest(HomeController::class)
-class HomeControllerTest(@Autowired val mockMvc: MockMvc) {
+class HomeControllerTest(@Autowired private val mockMvc: MockMvc) {
   @MockitoBean
-  lateinit var userRepository: UserRepository
+  private lateinit var userRepository: UserRepository
 
   @Test
   @WithMockUser
@@ -23,5 +25,18 @@ class HomeControllerTest(@Autowired val mockMvc: MockMvc) {
       .andExpect(status().isOk())
       .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_PLAIN))
       .andExpect(content().string("Hello, World!"))
+  }
+
+  @Test
+  @WithMockUser
+  @Throws(Exception::class)
+  fun shouldReturnUserInfo() {
+    `when`(userRepository.findByUsername(anyString())).thenReturn(UserAccount("Alice", "password", "USER"))
+
+    mockMvc.perform(get("/users").param("username", "Alice"))
+      .andExpect(status().isOk())
+      .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+      .andExpect(jsonPath("$.username").value("Alice"))
+      .andExpect(jsonPath("$.role").value("USER"))
   }
 }
