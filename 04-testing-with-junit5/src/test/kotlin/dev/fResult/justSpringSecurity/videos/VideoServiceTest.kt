@@ -1,12 +1,12 @@
 package dev.fResult.justSpringSecurity.videos
 
-import org.junit.jupiter.api.Assertions.assertEquals
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 import org.mockito.ArgumentMatchers.eq
+import org.mockito.BDDMockito.given
 import org.mockito.Mock
-import org.mockito.Mockito.`when`
 import org.mockito.junit.jupiter.MockitoExtension
 
 @ExtendWith(MockitoExtension::class)
@@ -20,14 +20,17 @@ class VideoServiceTest {
   }
 
   @Test
-  fun `should save video`() {
+  fun `creating new video should return same data with id`() {
+    // Given
     val newVideo =  NewVideo("title", "description")
     val videoToCreate = Video("Alice", "title", "description")
     val expectedCreatedVideo = Video(1, "Alice", "title", "description")
-    `when`(videoRepository.saveAndFlush(eq(videoToCreate))).thenReturn(expectedCreatedVideo)
+    given(videoRepository.saveAndFlush(eq(videoToCreate))).willReturn(expectedCreatedVideo)
 
+    // When
     val actualCreatedVideo = videoService.create(newVideo, "Alice")
 
-    assertEquals(expectedCreatedVideo, actualCreatedVideo)
+    // Then
+    assertThat(expectedCreatedVideo).isEqualTo(actualCreatedVideo)
   }
 }
