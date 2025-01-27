@@ -7,7 +7,9 @@ import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.api.extension.ExtendWith
 import org.mockito.ArgumentMatchers.eq
 import org.mockito.BDDMockito.given
+import org.mockito.BDDMockito.verify
 import org.mockito.Mock
+import org.mockito.Mockito.`when`
 import org.mockito.junit.jupiter.MockitoExtension
 import java.util.*
 
@@ -36,6 +38,21 @@ class VideoServiceTest {
 
     // Then
     assertThat(expectedCreatedVideo).isEqualTo(actualCreatedVideo)
+  }
+
+  @Test
+  fun `delete video should work`() {
+    // Given
+    val videoId = 1L
+    val videoToDelete = Video(videoId, "Alice", "title", "description")
+    `when`(videoRepository.findById(videoId)).thenReturn(Optional.of(videoToDelete))
+
+    // When
+    videoService.delete(videoId)
+
+    // Then
+    verify(videoRepository).findById(videoId)
+    verify(videoRepository).delete(videoToDelete)
   }
 
   @Test
