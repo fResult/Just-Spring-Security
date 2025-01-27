@@ -10,9 +10,19 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest
 class VideoRepositoryTest(@Autowired private val videoRepository: VideoRepository) {
   @BeforeEach
   fun setUp() {
-    val video1 = Video("Alice", "video 1", "description")
-    val video2 = Video("Alice", "video 2", "description")
-    val video3 = Video("Alice", "video 3", "description")
+    val video1 = Video(
+      "user",
+      "Need HELP with your SPRING BOOT 3 App?",
+      "SPRING BOOT 3 will only speed things up.",
+    )
+    val video2 = Video(
+      "user",
+      "Don't do THIS to your own CODE!",
+      "As a pro developer, never ever EVER do this to your code.",
+    )
+    val video3 = Video(
+      "user", "SECRETS to fix BROKEN CODE!", "Discover ways to not only debug your code"
+    )
 
     videoRepository.saveAll(listOf(video1, video2, video3))
   }
