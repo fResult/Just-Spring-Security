@@ -48,4 +48,19 @@ class VideoRepositoryTest(@Autowired private val videoRepository: VideoRepositor
       .extracting(Video::name)
       .containsExactlyInAnyOrder(Tuple("Need HELP with your SPRING BOOT 3 App?"))
   }
+
+  @Test
+  fun `find by name or description should find two`() {
+    // When
+    val videos = videoRepository.findByNameContainsOrDescriptionContainsAllIgnoreCase("cOdE", "YOUR code")
+
+    // Then
+    assertThat(videos).hasSize(2)
+    assertThat(videos)
+      .extracting(Video::description)
+      .containsExactlyInAnyOrder(
+        Tuple("As a pro developer, never ever EVER do this to your code."),
+        Tuple("Discover ways to not only debug your code"),
+      )
+  }
 }
