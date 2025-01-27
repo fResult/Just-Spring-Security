@@ -1,6 +1,7 @@
 package dev.fResult.justSpringSecurity.videos
 
 import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.groups.Tuple
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
@@ -34,5 +35,17 @@ class VideoRepositoryTest(@Autowired private val videoRepository: VideoRepositor
 
     // Then
     assertThat(videos).hasSize(3)
+  }
+
+  @Test
+  fun `find by name should retrieve one entry`() {
+    // When
+    val videos = videoRepository.findByNameContainsIgnoreCase("Spring BOOT 3")
+
+    // Then
+    assertThat(videos).hasSize(1)
+    assertThat(videos)
+      .extracting(Video::name)
+      .containsExactlyInAnyOrder(Tuple("Need HELP with your SPRING BOOT 3 App?"))
   }
 }
