@@ -24,7 +24,7 @@ class VideoRepositoryTestContainersTest(
 ) {
   companion object {
     @Container
-    val POSTGRESQL_CONTAINER: PostgreSQLContainer<*> =
+    val POSTGRESQL_CONTAINER: PostgreSQLContainer<Nothing> =
       PostgreSQLContainer<Nothing>("postgres:16-alpine").withUsername("postgres")
   }
 
