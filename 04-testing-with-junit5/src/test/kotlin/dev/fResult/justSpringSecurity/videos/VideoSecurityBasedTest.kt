@@ -8,6 +8,7 @@ import org.springframework.test.context.bean.override.mockito.MockitoBean
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
+import kotlin.jvm.Throws
 
 @WebMvcTest(controllers = [VideoController::class])
 class VideoSecurityBasedTest(@Autowired val mockMvc: MockMvc) {
@@ -15,18 +16,21 @@ class VideoSecurityBasedTest(@Autowired val mockMvc: MockMvc) {
   private lateinit var videoService: VideoService
 
   @Test
-  fun `unauthenticated user shouldn't access videos`() {
+  @Throws(Exception::class)
+  fun `unauthenticated user should not access videos`() {
     mockMvc.perform(get("/videos")).andExpect(status().isUnauthorized)
   }
 
   @Test
   @WithMockUser(username = "Alice", roles = ["USER"])
+  @Throws(Exception::class)
   fun `authenticated user should access videos`() {
     mockMvc.perform(get("/videos")).andExpect(status().isOk())
   }
 
   @Test
   @WithMockUser(username = "Admin", roles = ["ADMIN"])
+  @Throws(Exception::class)
   fun `admin user should access videos`() {
     mockMvc.perform(get("/videos")).andExpect(status().isOk)
   }
