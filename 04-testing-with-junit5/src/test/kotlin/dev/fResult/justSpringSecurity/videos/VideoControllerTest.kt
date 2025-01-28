@@ -2,8 +2,6 @@ package dev.fResult.justSpringSecurity.videos
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.junit.jupiter.api.Test
-import org.mockito.ArgumentMatchers.eq
-import org.mockito.BDDMockito.given
 import org.mockito.Mockito.*
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
@@ -29,13 +27,14 @@ class VideoControllerTest(
   @Throws(Exception::class)
   fun newVideoShouldWork() {
     val requestBody = NewVideo("New Video", "Description")
-    given(videoService.create(requestBody, "Alice")).willReturn(Video("Alice", "New Video", "Description"))
 
     mockMvc.perform(
       post("/videos").with(csrf())
         .contentType(MediaType.APPLICATION_JSON)
         .content(objectMapper.writeValueAsString(requestBody))
-    ).andExpect(status().isCreated)
+    )
+
+    verify(videoService).create(requestBody, "Alice")
   }
 
   @Test
