@@ -31,11 +31,21 @@ dependencies {
   implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 
   runtimeOnly("org.hsqldb:hsqldb")
+  runtimeOnly("org.postgresql:postgresql")
 
   testImplementation(libs.spring.boot.starter.test)
   testImplementation("org.springframework.security:spring-security-test")
+  testImplementation("org.springframework.boot:spring-boot-testcontainers")
   testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
+  testImplementation("org.testcontainers:junit-jupiter")
+  testImplementation("org.testcontainers:postgresql")
   testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+}
+
+dependencyManagement {
+  imports {
+    mavenBom("org.testcontainers:testcontainers-bom:${libs.versions.testcontainers.get()}")
+  }
 }
 
 kotlin {
