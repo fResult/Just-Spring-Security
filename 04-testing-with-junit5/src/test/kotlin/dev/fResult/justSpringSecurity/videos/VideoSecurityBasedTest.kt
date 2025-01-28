@@ -24,4 +24,10 @@ class VideoSecurityBasedTest(@Autowired val mockMvc: MockMvc) {
   fun `authenticated user should access videos`() {
     mockMvc.perform(get("/videos")).andExpect(status().isOk())
   }
+
+  @Test
+  @WithMockUser(username = "Admin", roles = ["ADMIN"])
+  fun `admin user should access videos`() {
+    mockMvc.perform(get("/videos")).andExpect(status().isOk)
+  }
 }
