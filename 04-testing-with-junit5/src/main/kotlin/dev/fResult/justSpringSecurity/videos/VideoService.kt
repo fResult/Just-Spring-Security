@@ -48,5 +48,4 @@ class VideoService(private val videoRepository: VideoRepository) {
 
     videoRepository.saveAll(listOf(video1, video2, video3))
   }
-
 }
