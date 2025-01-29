@@ -10,8 +10,7 @@ import org.springframework.security.test.context.support.WithMockUser
 import org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf
 import org.springframework.test.context.bean.override.mockito.MockitoBean
 import org.springframework.test.web.servlet.MockMvc
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
 
@@ -67,4 +66,14 @@ class VideoSecurityBasedTest(
     ).andExpect(status().isCreated)
       .andExpect(jsonPath("$.id").value(createdVideo.id))
   }
+
+  @Test
+  @Throws(Exception::class)
+  fun `delete video should be forbidden for unauthenticated user`() {
+    val videoId = 42L
+
+    mockMvc.perform(delete("/videos/{id}", videoId).with(csrf()))
+      .andExpect(status().isUnauthorized)
+  }
 }
+
