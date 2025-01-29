@@ -75,5 +75,17 @@ class VideoSecurityBasedTest(
     mockMvc.perform(delete("/videos/{id}", videoId).with(csrf()))
       .andExpect(status().isUnauthorized)
   }
+
+  @Test
+  @WithMockUser(username = "Alice", roles = ["USER"])
+  @Throws(Exception::class)
+  fun `delete video should work for authenticated user`() {
+    val videoId = 42L
+
+    given(videoService.delete(videoId)).willReturn(true)
+
+    mockMvc.perform(delete("/videos/{id}", videoId).with(csrf()))
+      .andExpect(status().isNoContent)
+  }
 }
 
