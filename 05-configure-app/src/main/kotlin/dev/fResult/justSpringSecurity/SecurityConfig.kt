@@ -1,5 +1,6 @@
 package dev.fResult.justSpringSecurity
 
+import dev.fResult.justSpringSecurity.common.configs.AppConfigProperties
 import org.springframework.boot.CommandLineRunner
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -16,17 +17,13 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher
 
 @Configuration
 @EnableMethodSecurity
-class SecurityConfig {
+class SecurityConfig(private val appProps: AppConfigProperties) {
   @Bean
   fun passwordEncoder(): PasswordEncoder = BCryptPasswordEncoder()
 
   @Bean
   fun initUsers(repository: UserManagementRepository): CommandLineRunner {
-    return CommandLineRunner { _ ->
-      repository.save(UserAccount("admin", "password", "ROLE_ADMIN"))
-      repository.save(UserAccount("alice", "password", "ROLE_USER"))
-      repository.save(UserAccount("bob", "password", "ROLE_USER"))
-    }
+    return CommandLineRunner { repository.saveAll(appProps.users.map { it.toDAO() }) }
   }
 
   @Bean
