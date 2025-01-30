@@ -20,7 +20,7 @@ curl --user <user>:<password> \
 }'
 ```
 
-**DELETE `/videos/{id}`:**
+**DELETE `/videos/:id`:**
 
 ```bash
 curl --location --request DELETE 'localhost:8080/videos/:id' \
