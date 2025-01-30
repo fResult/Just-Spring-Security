@@ -4,4 +4,13 @@ import dev.fResult.justSpringSecurity.UserAccount
 import org.springframework.boot.context.properties.ConfigurationProperties
 
 @ConfigurationProperties(prefix = "app.config")
-data class AppConfigProperties(val header: String, val intro: String, val users: List<UserAccount>)
+data class AppConfigProperties(val users: List<UserAccount>) {
+  companion object {
+    data class UserAccount(val username: String, val password: String, val roles: List<UserRole>)
+
+    enum class UserRole(val role: String) {
+      ADMIN("ROLE_ADMIN"),
+      USER("ROLE_USER")
+    }
+  }
+}
