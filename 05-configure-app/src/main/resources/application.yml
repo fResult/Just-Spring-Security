@@ -11,3 +11,20 @@ spring:
     url: jdbc:h2:mem:testdb
     username: sa
     password:
+
+# Keep users here for learning purposes
+app:
+  config:
+    users:
+      - username: alice
+        password: password
+        roles:
+          - USER
+      - username: bob
+        password: password
+        roles:
+          - USER
+      - username: admin
+        password: password
+        roles:
+          - ADMIN
