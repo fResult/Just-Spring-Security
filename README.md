@@ -39,6 +39,32 @@ You can generate by creating credentials of OAuth Client ID.
 ./gradlew :03-oauth:bootRun
 ```
 
+### For `04-testing-with-junit5` module
+
+**To start the *04-testing-with-junit5* project, you can run:**
+
+```bash
+./gradlew :04-testing-with-junit5:bootRun
+```
+
+### For `05-spring-security-test` module
+
+**To start the *05-spring-security-test* project, you can run:**
+
+**For normal run (let's say it is implicitly `production`):**
+
+```bash
+./gradlew :05-spring-security-test:bootRun
+```
+
+**For `dev` profile run:**
+
+```bash
+./gradlew :05-spring-security-test:bootRun -Dspring.profiles.active=dev
+``` 
+
+### For `99-event-driven-arch` module
+
 **To try Event-Driven Architecture, you can run:**
 
 ```bash
@@ -58,3 +84,11 @@ You can generate by creating credentials of OAuth Client ID.
 ### 03-oauth
 
 - See [README](./03-oauth/README.md)
+
+### 04-testing-with-junit5
+
+- See [README](./04-testing-with-junit5/README.md)
+
+### 05-spring-security-test
+
+- See [README](./05-configure-app/README.md)
