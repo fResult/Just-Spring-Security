@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: "Just Spring Security (DEV)"
+
+  datasource:
+    url: jdbc:h2:mem:testdb-dev
+    username: sa
+    password:
+
+# Keep users here for learning purposes
+app:
+  config:
+    users: # This is for learning purposes only, do not do this in production
+      - username: dev1
+        password: password
+        roles:
+          - USER
+      - username: dev2
+        password: password
+        roles:
+          - USER
+      - username: admin
+        password: password
+        roles:
+          - ADMIN

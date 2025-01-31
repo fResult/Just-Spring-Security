@@ -1,9 +1,9 @@
 spring:
   application:
-    name: "Just Spring Security (Test)"
+    name: "Just Spring Security (UAT)"
 
   datasource:
-    url: jdbc:h2:mem:testdb-dev
+    url: jdbc:h2:mem:testdb-uat
     username: sa
     password:
 
