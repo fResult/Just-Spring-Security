@@ -23,3 +23,16 @@ export SPRING_PROFILES_ACTIVE=dev && ./gradlew :05-configure-app:bootRun
 ```
 
 To sign in, see the list of users in `src/main/resources/application-dev.properties`.
+
+> [!note]
+> To reset the profile, run the following command:
+> 
+> ```bash
+> unset SPRING_PROFILES_ACTIVE
+> ```
+> 
+> For Fish shell, use the following command:
+> 
+> ```bash
+> set -e SPRING_PROFILES_ACTIVE
+> ```
