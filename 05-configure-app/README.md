@@ -2,7 +2,7 @@
 
 ## How to run with profiles
 
-### With normal profile
+### With default profile (implicitly `dev` profile)
 
 ```bash
 ./gradlew :05-configure-app:bootRun
@@ -10,29 +10,16 @@
 
 To sign in, see the list of users in `src/main/resources/application.properties`.
 
-### With the `dev` profile
+### With the `test` profile
 
 ```bash
-./gradlew :05-configure-app:bootRun -Dspring.profiles.active=dev
+./gradlew :05-configure-app:bootRun -Dspring.profiles.active=test
 ```
 
-Or with the following command
+Or with the following this Unix command
 
 ```bash
-export SPRING_PROFILES_ACTIVE=dev && ./gradlew :05-configure-app:bootRun
+SPRING_PROFILES_ACTIVE=test ./gradlew :05-configure-app:bootRun
 ```
 
-To sign in, see the list of users in `src/main/resources/application-dev.properties`.
-
-> [!note]
-> To reset the profile, run the following command:
-> 
-> ```bash
-> unset SPRING_PROFILES_ACTIVE
-> ```
-> 
-> For Fish shell, use the following command:
-> 
-> ```bash
-> set -e SPRING_PROFILES_ACTIVE
-> ```
+To sign in, see the list of users in `src/main/resources/application-test.properties`.

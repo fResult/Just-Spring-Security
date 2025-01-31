@@ -57,11 +57,17 @@ You can generate by creating credentials of OAuth Client ID.
 ./gradlew :05-spring-security-test:bootRun
 ```
 
-**For `dev` profile run:**
+**For `test` profile run:**
 
 ```bash
-./gradlew :05-spring-security-test:bootRun -Dspring.profiles.active=dev
+./gradlew :05-configure-app:bootRun -Dspring.profiles.active=test
 ``` 
+
+Or with the following command:
+
+```bash
+SPRING_PROFILES_ACTIVE=test ./gradlew :05-configure-app:bootRun
+```
 
 ### For `99-event-driven-arch` module
 
@@ -75,7 +81,7 @@ You can generate by creating credentials of OAuth Client ID.
 
 ### 01-my-spring-security
 
-- See [README](./01-my-spring-security/README.md)
+- See [README](./01-my-first-security/README.md)
 
 ### 02-method-security
 
