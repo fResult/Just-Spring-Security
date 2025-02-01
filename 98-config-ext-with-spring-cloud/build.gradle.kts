@@ -22,7 +22,6 @@ dependencies {
   implementation("org.springframework.cloud:spring-cloud-config-server")
 
   testImplementation(libs.spring.boot.starter.test)
-
   testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 
