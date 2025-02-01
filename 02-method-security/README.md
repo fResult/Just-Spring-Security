@@ -1,5 +1,7 @@
 # 2. Method Security
 
+Securing an Application with Spring Boot and Method Security
+
 ## API Usage
 
 **GET `/videos`:**

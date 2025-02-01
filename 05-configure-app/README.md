@@ -1,5 +1,7 @@
 # 5. Configure the Application
 
+Configuring an Application with Spring Boot
+
 ## How to run with profiles
 
 ### With default profile (implicitly `dev` profile)

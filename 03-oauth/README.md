@@ -1,5 +1,7 @@
 # 3. OAuth
 
+Securing an Application with Spring Boot and OAuth 2.0
+
 ## API Usage
 
 **GET `/youtube`:**
