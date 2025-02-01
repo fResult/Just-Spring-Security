@@ -12,4 +12,5 @@ include("06-release-app")
 
 // Off-topics
 include("98-config-ext-with-spring-cloud")
+include("98_1-spring-cloud-config-client")
 include("99-event-driven-arch")
