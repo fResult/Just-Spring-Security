@@ -10,4 +10,5 @@ include("04-testing-with-junit5")
 include("05-configure-app")
 include("06-release-app")
 
+include("98-config-ext-with-spring-cloud")
 include("99-event-driven-arch")
