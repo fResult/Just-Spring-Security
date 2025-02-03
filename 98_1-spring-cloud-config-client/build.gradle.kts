@@ -20,8 +20,11 @@ repositories {
 }
 
 dependencies {
+	annotationProcessor(libs.spring.boot.configuration.processor)
+
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.springframework.cloud:spring-cloud-starter-config")
+
 	testImplementation(libs.spring.boot.starter.test)
 	testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
