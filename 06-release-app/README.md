@@ -21,6 +21,14 @@ Releasing an Application with Spring Boot
 
 ## Scripts
 
+### Prepare the Application
+
+Prepare the `.env` file by copying the `.envTemplate` file
+
+```bash
+cp 06-release-app/.envTemplate 06-release-app/.env
+```
+
 ### Run Built JAR as Scaled Application
 
 #### Profile `instance1`
