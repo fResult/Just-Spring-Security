@@ -93,6 +93,9 @@ docker tag 06-release-app:0.0.1 ghcr.io/<github_username>/06-release-app:0.0.1
 docker push ghcr.io/<github_username>/06-release-app:0.0.1
 ```
 
+**You may see your image in the GitHub Container Registry something like this:**
+<https://github.com/fResult/Just-Spring-Security/pkgs/container/06-release-app/349742251?tag=0.0.1>
+
 ### Pull Image from GitHub Container Registry
 
 For testing purposes, we should remove the image `06-release-app:0.0.1` from the local machine before pulling it from GitHub Container Registry
