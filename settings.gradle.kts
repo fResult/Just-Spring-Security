@@ -9,6 +9,7 @@ include("03-oauth")
 include("04-testing-with-junit5")
 include("05-configure-app")
 include("06-release-app")
+include("07-going-graalvm")
 
 // Off-topics
 include("98-config-ext-with-spring-cloud")
