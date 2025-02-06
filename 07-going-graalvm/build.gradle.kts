@@ -53,3 +53,11 @@ tasks.withType<Test> {
 tasks.withType<BootJar> {
   mainClass = "dev.fResult.justSpringSecurity.ApplicationKt"
 }
+
+hibernate {
+  enhancement {
+    enableLazyInitialization = true
+    enableDirtyTracking = true
+    enableAssociationManagement = true
+  }
+}
