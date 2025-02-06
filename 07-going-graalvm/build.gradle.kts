@@ -6,6 +6,7 @@ plugins {
   id("org.springframework.boot") version libs.versions.springboot.get()
   id("io.spring.dependency-management") version "1.1.7"
   id("org.graalvm.buildtools.native") version "0.10.4"
+  id("org.hibernate.orm") version "6.6.6.Final"
 }
 
 group = "dev.fResult"
