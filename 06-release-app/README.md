@@ -29,6 +29,12 @@ Prepare the `.env` file by copying the `.envTemplate` file
 cp 06-release-app/.envTemplate 06-release-app/.env
 ```
 
+Then, create PostgresSQL container by running the following command
+
+```bash
+docker-compose -f 06-release-app/docker-compose.yml up -d
+```
+
 ### Run Built JAR as Scaled Application
 
 #### Profile `instance1`
