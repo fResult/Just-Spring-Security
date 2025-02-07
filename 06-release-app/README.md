@@ -82,7 +82,7 @@ docker-compose -f 06-release-app/docker-compose.yml up -d
 ### Build Image
 
 ```bash
-./gradlew :06-release-app:bootBuildImage
+./gradlew :06-release-app:clean :06-release-app:bootBuildImage
 ```
 
 ### Push Built Image to GitHub Container Registry
